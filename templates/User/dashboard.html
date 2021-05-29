@@ -1,0 +1,48 @@
+{% extends 'base/base.html' %}
+{% block title %} Dashboard {% endblock %}
+{% block body %}
+    <style>
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            transition: 0.3s;
+            word-break: break-all;
+            padding: 20px;
+            min-height: 382px;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+        }
+    </style>
+
+    <div class="container">
+        <h1 class="alert alert-info"> Product List</h1>
+        {% if products %}
+            <div class="row">
+                {% for product in products %}
+                    <div class="col-md-3">
+
+                        <div class="card">
+                            <img src="{{ product.image.url }}" alt="Avatar" style="width:100%">
+                            <h4><b>{{ product.name }}</b></h4>
+                            <ul>
+                                <li>{{ product.tags }}</li>
+                            </ul>
+                            <p>{{ product.description|truncatechars:50 }}</p>
+                            <div>
+                                <a href="{% url 'Shop:update_product' product.id %}" class="btn btn-warning">Update</a>
+                                &nbsp;
+                                <a href="{% url 'Shop:delete_product' product.id %}" class="btn btn-danger">Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <h3 class="alert alert-danger">
+                No Item added,  add a new product <a href="{% url 'Shop:create_product' %}">Add </a>
+            </h3>
+        {% endif %}
+    </div>
+
+{% endblock %}

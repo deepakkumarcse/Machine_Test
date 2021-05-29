@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h1 class="alert alert-info">Sign Up</h1>
+            <form action="{% url 'User:signup' %}" method="post" >
+                {% csrf_token %}
+                <p>
+                    <strong>First Name</strong> : <br/>
+                {{ form.first_name }}
+                </p>
+                <p>
+                    <strong>Last Name</strong> : <br/>
+                {{ form.last_name }}
+                </p>
+                <p>
+                    <strong>Username</strong> : <br/>
+                {{ form.username }}
+                    {% if errors.username %}
+                        {{ errors.username }}
+                    {% endif %}
+                </p>
+                <p>
+                    <strong>email</strong> : <br/>
+                {{ form.email }}
+                    {% if errors.email %}
+                        {{ errors.email }}
+                    {% endif %}
+                </p>
+                <p>
+                    <strong>password</strong> : <br/>
+                {{ form.password }}
+                    {% if errors.password %}
+                       {{ errors.password }}
+                    {% endif %}
+                </p>
+                <input type="submit" class="btn btn-success" id="btnsave" value="save">
+            </form>
+        <br/>
+        Already have an account ? <a href="{% url 'User:login' %}">Sign in here</a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

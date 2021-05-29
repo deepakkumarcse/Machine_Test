@@ -1,0 +1,23 @@
+{% extends 'base/base.html' %}
+{% block title %} Update Category {% endblock %}
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h1 class="alert alert-info">Update Category</h1>
+            <form action="{% url 'Shop:update_category' instance.id %}" method="post">
+                {% csrf_token %}
+                <p>
+                    <strong>Name</strong> : <br/>
+                    {{ form.name }}
+                    {% if errors.name %}
+                        {{ errors.name }}
+                    {% endif %}
+                </p>
+                <input type="submit" class="btn btn-success" id="btnsave" value="save">
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

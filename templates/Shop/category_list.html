@@ -1,0 +1,31 @@
+{% extends 'base/base.html' %}
+{% block title %} Categories {% endblock %}
+{% block body %}
+    <div class="container">
+        <h1 class="alert alert-info">Category List</h1>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Action</th>
+                </tr>
+                <tbody>
+                {% for category in categories %}
+                    <tr>
+                        <td>{{ category.id }}</td>
+                        <td>{{ category.name }}</td>
+                        <td>
+                            <a href="{% url 'Shop:create_category' %}" class="btn btn-info">Add New</a>
+                            <a href="{% url 'Shop:update_category' category.id %}" class="btn btn-warning">Update</a>
+                            <a href="{% url 'Shop:delete_category' category.id %}" class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+                </thead>
+            </table>
+        </div>
+    </div>
+{% endblock %}
